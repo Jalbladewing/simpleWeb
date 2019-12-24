@@ -35,6 +35,42 @@
         }
       ],
       "shadow": true
+    },
+    {
+      "tag": "app-table",
+      "dependencies": [],
+      "componentClass": "AppTable",
+      "componentPath": "components/app-table/app-table.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-table/app-table.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "id",
+          "type": "String",
+          "attr": "id"
+        },
+        {
+          "name": "service_url",
+          "type": "String",
+          "attr": "service_url"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        }
+      ],
+      "states": [
+        {
+          "name": "list"
+        }
+      ],
+      "shadow": true
     }
   ],
   "collections": [],
