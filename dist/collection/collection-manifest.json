@@ -1,0 +1,48 @@
+{
+  "components": [
+    {
+      "tag": "app-root",
+      "dependencies": [],
+      "componentClass": "AppRoot",
+      "componentPath": "components/app-root/app-root.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-root/app-root.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "id",
+          "type": "String",
+          "attr": "id"
+        },
+        {
+          "name": "service_url",
+          "type": "String",
+          "attr": "service_url"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        }
+      ],
+      "states": [
+        {
+          "name": "list"
+        }
+      ],
+      "shadow": true
+    }
+  ],
+  "collections": [],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "0.16.4",
+    "typescriptVersion": "3.2.2"
+  },
+  "bundles": [],
+  "global": "global/app.js"
+}

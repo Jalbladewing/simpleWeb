@@ -1,0 +1,25 @@
+{
+  "tags": [
+    {
+      "label": "app-root",
+      "description": "",
+      "attributes": [
+        {
+          "label": "id",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "service_url",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "type",
+          "description": "",
+          "required": false
+        }
+      ]
+    }
+  ]
+}
