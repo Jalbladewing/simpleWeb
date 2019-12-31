@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">
+  <head> 
+    <meta charset="utf-8">
+  	<script src='https://unpkg.com/stencil-apexcharts/dist/apex.js'></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./dist/app.js"></script>
+    <link href="./dist/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+      body {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        background-image: url("images/backgroundCity.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        height:100%;
+     }
+   
+     div {
+       position: relative;
+       margin: 0px;
+       width: 95%;
+       padding: 0px;
+     }
+ 
+     p {
+       font-size: 3.6em;
+     }
+
+      .topnav {
+      overflow: hidden;
+      background-color: #333;
+      padding: 0;
+      margin: 0;
+      width: auto;
+    }
+
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .topnav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+     .parentDiv {
+        height: 120%;
+        background-color:
+        white;
+        padding: 10px;
+        margin: 20px;
+        width: 97%;
+        -webkit-box-shadow: 1px 1px 11px 2px rgba(0,0,0,0.67);
+        -moz-box-shadow: 1px 1px 11px 2px rgba(0,0,0,0.67);
+        box-shadow: 1px 1px 11px 2px rgba(0,0,0,0.67);
+        border-radius: 10px;
+        border: 1px solid #c1bdbd;
+     }
+
+    .row {
+      display: flex;
+    }
+
+    /* Create two equal columns that sits next to each other */
+    .column {
+      flex: 50%;
+      padding: 10px;
+      height: 300px; /* Should be removed. Only for demonstration */
+    }
+ 
+    </style>
+    <script type="text/javascript">
+      function getURLParameter(sParam) 
+      {
+          var sPageURL = window.location.search.substring(1);
+          var sURLVariables = sPageURL.split('&');
+          for (var i = 0; i < sURLVariables.length; i++) 
+          {
+              var sParameterName = sURLVariables[i].split('=');
+              if (sParameterName[0] == sParam) 
+              {
+                  return sParameterName[1];
+              }
+          }
+      }
+
+      document.write('<div class="topnav">');
+      document.write('<a href="index.html"><i class="fa fa-arrow-left"></i> App</a></div>');
+      document.write('<div class="parentDiv">');
+      document.write('<app-table type="Room" entityid="' + getURLParameter("id") + '" service_url="localhost"></app-table>');
+      document.write('<div style="height: 300px;width: 95%;">');
+      document.write('<app-realChart id="realChart" type="Room" entityid="' + getURLParameter("id") + '" service_url="localhost" data_to_compare="temperature"></app-realChart>');
+      document.write('</div>');
+      document.write('<div class="row"><div class="column">');
+      document.write('<app-compareChart type="Room" entityid="" service_url="localhost" data_to_compare="temperature" entity_to_compare="' + getURLParameter("id") + '"></app-compareChart>');
+      document.write('</div>');
+      document.write('<div class="column" style="flex: 20%;">');
+      document.write('<app-compareChart type="Room" entityid="" service_url="localhost" data_to_compare="pressure" entity_to_compare="' + getURLParameter("id") + '"></app-compareChart>');
+      document.write('</div>');
+      document.write('</div>');
+      document.write('</div>');
+    </script> 
+  </head>
+  <body>
+
+  </body>
+</html>

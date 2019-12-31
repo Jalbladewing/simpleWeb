@@ -1,6 +1,63 @@
 {
   "tags": [
     {
+      "label": "app-comparechart",
+      "description": "",
+      "attributes": [
+        {
+          "label": "data_to_compare",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "entity_to_compare",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "entityid",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "service_url",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "type",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "app-realchart",
+      "description": "",
+      "attributes": [
+        {
+          "label": "data_to_compare",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "entityid",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "service_url",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "type",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
       "label": "app-root",
       "description": "",
       "attributes": [
@@ -26,7 +83,12 @@
       "description": "",
       "attributes": [
         {
-          "label": "id",
+          "label": "entityid",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "page_url",
           "description": "",
           "required": false
         },

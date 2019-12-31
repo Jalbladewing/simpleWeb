@@ -1,6 +1,105 @@
 {
   "components": [
     {
+      "tag": "app-comparechart",
+      "dependencies": [],
+      "componentClass": "AppCompareChart",
+      "componentPath": "components/app-compareChart/app-compareChart.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-compareChart/app-compareChart.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "data_to_compare",
+          "type": "String",
+          "attr": "data_to_compare"
+        },
+        {
+          "name": "entity_to_compare",
+          "type": "String",
+          "attr": "entity_to_compare"
+        },
+        {
+          "name": "entityid",
+          "type": "String",
+          "attr": "entityid"
+        },
+        {
+          "name": "service_url",
+          "type": "String",
+          "attr": "service_url"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        }
+      ],
+      "states": [
+        {
+          "name": "list"
+        },
+        {
+          "name": "maxData"
+        },
+        {
+          "name": "roomData"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "app-realchart",
+      "dependencies": [],
+      "componentClass": "AppRealChart",
+      "componentPath": "components/app-realChart/app-realChart.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-realChart/app-realChart.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "data_to_compare",
+          "type": "String",
+          "attr": "data_to_compare"
+        },
+        {
+          "name": "entityid",
+          "type": "String",
+          "attr": "entityid"
+        },
+        {
+          "name": "service_url",
+          "type": "String",
+          "attr": "service_url"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "attr": "type"
+        }
+      ],
+      "states": [
+        {
+          "name": "list"
+        },
+        {
+          "name": "lista"
+        },
+        {
+          "name": "listo"
+        }
+      ],
+      "shadow": true
+    },
+    {
       "tag": "app-root",
       "dependencies": [],
       "componentClass": "AppRoot",
@@ -50,9 +149,14 @@
       },
       "props": [
         {
-          "name": "id",
+          "name": "entityid",
           "type": "String",
-          "attr": "id"
+          "attr": "entityid"
+        },
+        {
+          "name": "page_url",
+          "type": "String",
+          "attr": "page_url"
         },
         {
           "name": "service_url",
@@ -73,7 +177,12 @@
       "shadow": true
     }
   ],
-  "collections": [],
+  "collections": [
+    {
+      "name": "stencil-apexcharts",
+      "tags": []
+    }
+  ],
   "compiler": {
     "name": "@stencil/core",
     "version": "0.16.4",
