@@ -4,9 +4,10 @@ export class AppTable {
         this._socketService = SocketIoService.getInstance();
         this._socketService;
         this.list = [];
+        this.filter = "";
     }
     componentWillLoad() {
-        fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid)
+        fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid + '&queryFilter=' + this.filter)
             .then((response) => response.json())
             .then(response => {
             this.list = JSON.parse(JSON.stringify(response)).entities;
@@ -14,7 +15,7 @@ export class AppTable {
     }
     componentDidLoad() {
         this._socketService.onSocketReady(() => {
-            this._socketService.onSocket(this.type + "-" + this.entityid, (msg) => {
+            this._socketService.onSocket(this.type + "-" + this.entityid + "-" + this.filter, (msg) => {
                 this.list = JSON.parse(JSON.stringify(msg)).entities;
             });
         });
@@ -45,7 +46,7 @@ export class AppTable {
                         h("td", null, entity.name),
                         entity.values.map((entityValue) => h("td", null, entityValue.value)),
                         this.entityid == "" ? h("td", { class: "button-td" },
-                            h("a", { href: this.page_url + "?id=" + entity.name, class: " next round" }, "\u203A")) : h("td", { class: "no-display" }))))),
+                            h("a", { href: this.page_url + "?type=" + this.type + "&id=" + entity.name, class: " next round" }, "\u203A")) : h("td", { class: "no-display" }))))),
                 h("div", { class: "clearfix" },
                     h("div", { class: "hint-text" },
                         "Showing ",
@@ -67,6 +68,10 @@ export class AppTable {
         "entityid": {
             "type": String,
             "attr": "entityid"
+        },
+        "filter": {
+            "type": String,
+            "attr": "filter"
         },
         "list": {
             "state": true

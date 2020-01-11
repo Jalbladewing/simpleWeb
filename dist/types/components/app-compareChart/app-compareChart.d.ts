@@ -7,13 +7,17 @@ export declare class AppCompareChart {
      */
     _socketService: SocketIoService;
     list: any[];
+    attributeList: string[];
+    attributeSelected: string;
+    auxAttributeSelected: string;
     roomData: any;
     maxData: any;
     type: string;
     entityid: string;
+    filter: string;
     service_url: string;
     entity_to_compare: string;
-    data_to_compare: string;
+    private modalDialog?;
     constructor();
     componentWillLoad(): void;
     /**
@@ -21,6 +25,11 @@ export declare class AppCompareChart {
      */
     componentDidLoad(): void;
     updateGraphValues(): void;
+    updateAttributeList(): void;
     valueToPercent(value: any): number;
+    modalButtonClick(): void;
+    closeModal(): void;
+    submitNewAttribute(): void;
+    entitySelected(event: CustomEvent): void;
     render(): JSX.Element;
 }

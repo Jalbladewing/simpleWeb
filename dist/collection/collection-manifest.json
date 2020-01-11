@@ -1,6 +1,36 @@
 {
   "components": [
     {
+      "tag": "app-combobox",
+      "dependencies": [],
+      "componentClass": "AppComboBox",
+      "componentPath": "components/app-comboBox/app-comboBox.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-comboBox/app-comboBox.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "combodata",
+          "attr": "combodata"
+        }
+      ],
+      "states": [
+        {
+          "name": "selectedData"
+        }
+      ],
+      "events": [
+        {
+          "event": "entitySelected"
+        }
+      ],
+      "shadow": true
+    },
+    {
       "tag": "app-comparechart",
       "dependencies": [],
       "componentClass": "AppCompareChart",
@@ -14,11 +44,6 @@
       },
       "props": [
         {
-          "name": "data_to_compare",
-          "type": "String",
-          "attr": "data_to_compare"
-        },
-        {
           "name": "entity_to_compare",
           "type": "String",
           "attr": "entity_to_compare"
@@ -27,6 +52,11 @@
           "name": "entityid",
           "type": "String",
           "attr": "entityid"
+        },
+        {
+          "name": "filter",
+          "type": "String",
+          "attr": "filter"
         },
         {
           "name": "service_url",
@@ -41,6 +71,15 @@
       ],
       "states": [
         {
+          "name": "attributeList"
+        },
+        {
+          "name": "attributeSelected"
+        },
+        {
+          "name": "auxAttributeSelected"
+        },
+        {
           "name": "list"
         },
         {
@@ -48,6 +87,14 @@
         },
         {
           "name": "roomData"
+        }
+      ],
+      "listeners": [
+        {
+          "event": "entitySelected",
+          "method": "entitySelected",
+          "passive": false,
+          "capture": false
         }
       ],
       "shadow": true
@@ -66,14 +113,14 @@
       },
       "props": [
         {
-          "name": "data_to_compare",
-          "type": "String",
-          "attr": "data_to_compare"
-        },
-        {
           "name": "entityid",
           "type": "String",
           "attr": "entityid"
+        },
+        {
+          "name": "filter",
+          "type": "String",
+          "attr": "filter"
         },
         {
           "name": "service_url",
@@ -88,13 +135,30 @@
       ],
       "states": [
         {
+          "name": "attributeList"
+        },
+        {
+          "name": "attributeSelected"
+        },
+        {
+          "name": "auxAttributeSelected"
+        },
+        {
+          "name": "dateList"
+        },
+        {
           "name": "list"
         },
         {
-          "name": "lista"
-        },
+          "name": "valueList"
+        }
+      ],
+      "listeners": [
         {
-          "name": "listo"
+          "event": "entitySelected",
+          "method": "entitySelected",
+          "passive": false,
+          "capture": false
         }
       ],
       "shadow": true
@@ -154,6 +218,11 @@
           "attr": "entityid"
         },
         {
+          "name": "filter",
+          "type": "String",
+          "attr": "filter"
+        },
+        {
           "name": "page_url",
           "type": "String",
           "attr": "page_url"
@@ -172,6 +241,54 @@
       "states": [
         {
           "name": "list"
+        }
+      ],
+      "shadow": true
+    },
+    {
+      "tag": "app-writecomponent",
+      "dependencies": [],
+      "componentClass": "AppWriteComponent",
+      "componentPath": "components/app-writeComponent/app-writeComponent.js",
+      "styles": {
+        "$": {
+          "stylePaths": [
+            "components/app-writeComponent/app-writeComponent.css"
+          ]
+        }
+      },
+      "props": [
+        {
+          "name": "page_url",
+          "type": "String",
+          "attr": "page_url"
+        },
+        {
+          "name": "service_url",
+          "type": "String",
+          "attr": "service_url"
+        }
+      ],
+      "states": [
+        {
+          "name": "filter"
+        },
+        {
+          "name": "htmlRender"
+        },
+        {
+          "name": "selectedType"
+        },
+        {
+          "name": "typelist"
+        }
+      ],
+      "listeners": [
+        {
+          "event": "entitySelected",
+          "method": "entitySelected",
+          "passive": false,
+          "capture": false
         }
       ],
       "shadow": true

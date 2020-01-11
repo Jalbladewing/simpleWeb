@@ -9,6 +9,7 @@ export declare class AppTable {
     list: any[];
     type: string;
     entityid: string;
+    filter: string;
     service_url: string;
     page_url: string;
     constructor();

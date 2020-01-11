@@ -1,14 +1,14 @@
 {
   "tags": [
     {
+      "label": "app-combobox",
+      "description": "",
+      "attributes": []
+    },
+    {
       "label": "app-comparechart",
       "description": "",
       "attributes": [
-        {
-          "label": "data_to_compare",
-          "description": "",
-          "required": false
-        },
         {
           "label": "entity_to_compare",
           "description": "",
@@ -16,6 +16,11 @@
         },
         {
           "label": "entityid",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "filter",
           "description": "",
           "required": false
         },
@@ -36,12 +41,12 @@
       "description": "",
       "attributes": [
         {
-          "label": "data_to_compare",
+          "label": "entityid",
           "description": "",
           "required": false
         },
         {
-          "label": "entityid",
+          "label": "filter",
           "description": "",
           "required": false
         },
@@ -88,6 +93,11 @@
           "required": false
         },
         {
+          "label": "filter",
+          "description": "",
+          "required": false
+        },
+        {
           "label": "page_url",
           "description": "",
           "required": false
@@ -99,6 +109,22 @@
         },
         {
           "label": "type",
+          "description": "",
+          "required": false
+        }
+      ]
+    },
+    {
+      "label": "app-writecomponent",
+      "description": "",
+      "attributes": [
+        {
+          "label": "page_url",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "service_url",
           "description": "",
           "required": false
         }
