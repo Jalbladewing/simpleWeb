@@ -1,0 +1,91 @@
+curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+{
+  "id": "Grinon",
+  "type": "Weather_Station",
+  "temperature": {
+    "value": 8.89,
+    "type": "Float"
+  },
+  "humidity": {
+    "value": 118.9,
+    "type": "Float"
+  },
+  "pressure": {
+    "value": 0.0,
+    "type": "Float"
+  },
+  "location": {
+    "value": "Aranjuez",
+    "type": "string"
+  }
+}
+EOF
+
+curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+{
+  "id": "Sensores_Externos_CSNAT",
+  "type": "Weather_Station",
+  "temperature": {
+    "value": 31.7,
+    "type": "Float"
+  },
+  "humidity": {
+    "value": 99.9,
+    "type": "Float"
+  },
+  "pressure": {
+    "value": 96.12,
+    "type": "Float"
+  },
+  "location": {
+    "value": "Tucuman_Argentina",
+    "type": "string"
+  }
+}
+EOF
+
+curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+{
+  "id": "Meteo_Station._Desierto_de_Almeria",
+  "type": "Weather_Station",
+  "temperature": {
+    "value": 15,
+    "type": "Float"
+  },
+  "humidity": {
+    "value": 61,
+    "type": "Float"
+  },
+  "pressure": {
+    "value": 994,
+    "type": "Float"
+  },
+  "location": {
+    "value": "Desierto_de_Tabernas",
+    "type": "string"
+  }
+}
+EOF
+
+curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+{
+  "id": "Britos_Weather_Station",
+  "type": "Weather_Station",
+  "temperature": {
+    "value": 18.33,
+    "type": "Float"
+  },
+  "humidity": {
+    "value": 44.03,
+    "type": "Float"
+  },
+  "pressure": {
+    "value": 101844.50,
+    "type": "Float"
+  },
+  "location": {
+    "value": "Brito_Portugal",
+    "type": "string"
+  }
+}
+EOF
