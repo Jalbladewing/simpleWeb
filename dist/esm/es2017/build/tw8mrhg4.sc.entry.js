@@ -1,4 +1,6 @@
-export class AppWriteComponent {
+import { h } from '../app.core.js';
+
+class AppWriteComponent {
     constructor() {
         this.htmlRender = this.page_url;
         this.typelist = [];
@@ -164,5 +166,7 @@ export class AppWriteComponent {
             "name": "entitySelected",
             "method": "entitySelected"
         }]; }
-    static get style() { return "/**style-placeholder:app-writeComponent:**/"; }
+    static get style() { return ".filterHeader.sc-app-writeComponent{background:rgba(67,93,125,.95);color:#fff;border-radius:6px;padding:0 30px 16px;margin:25px;border:3px solid #435d7d}.input.sc-app-writeComponent{background-image:url(searchicon.png);background-position:14px 12px;background-repeat:no-repeat;font-size:16px;padding:10px 20px 10px 15px;width:200px!important;-webkit-box-sizing:border-box;box-sizing:border-box;border:1px solid #d0d0d0;border-radius:4px}.inputLabel.sc-app-writeComponent{text-align:left}.button.sc-app-writeComponent{display:-ms-flexbox;display:flex;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button.sc-app-writeComponent, .button.sc-app-writeComponent:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button.sc-app-writeComponent:hover{opacity:.85}.button.sc-app-writeComponent:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button.sc-app-writeComponent:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue.sc-app-writeComponent{color:#fff;background:#416dea}.button.-orange.sc-app-writeComponent{color:#fff;background:#ce5f29}"; }
 }
+
+export { AppWriteComponent as AppWritecomponent };

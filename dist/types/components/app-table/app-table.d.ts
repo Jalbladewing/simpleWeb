@@ -7,6 +7,7 @@ export declare class AppTable {
      */
     _socketService: SocketIoService;
     list: any[];
+    attributeList: string[];
     type: string;
     entityid: string;
     filter: string;
@@ -18,5 +19,7 @@ export declare class AppTable {
      * inital socket usage
      */
     componentDidLoad(): void;
+    updateAttributeList(): void;
+    writeRows(entityAttributes: any, attribute: any): JSX.Element;
     render(): JSX.Element;
 }

@@ -16,11 +16,22 @@
         {
           "name": "combodata",
           "attr": "combodata"
-        }
-      ],
-      "states": [
+        },
         {
-          "name": "selectedData"
+          "name": "comboid",
+          "type": "String",
+          "attr": "comboid"
+        },
+        {
+          "name": "componentWidth",
+          "type": "String",
+          "attr": "component-width"
+        },
+        {
+          "name": "selectedData",
+          "type": "String",
+          "mutable": true,
+          "attr": "selected-data"
         }
       ],
       "events": [
@@ -240,6 +251,9 @@
       ],
       "states": [
         {
+          "name": "attributeList"
+        },
+        {
           "name": "list"
         }
       ],
@@ -271,10 +285,25 @@
       ],
       "states": [
         {
+          "name": "attributeHasSelected"
+        },
+        {
+          "name": "attributeList"
+        },
+        {
+          "name": "attributeSelected"
+        },
+        {
           "name": "filter"
         },
         {
           "name": "htmlRender"
+        },
+        {
+          "name": "operationList"
+        },
+        {
+          "name": "operationSelected"
         },
         {
           "name": "selectedType"

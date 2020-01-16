@@ -4,6 +4,7 @@ export class AppTable {
         this._socketService = SocketIoService.getInstance();
         this._socketService;
         this.list = [];
+        this.attributeList = [];
         this.filter = "";
     }
     componentWillLoad() {
@@ -11,14 +12,41 @@ export class AppTable {
             .then((response) => response.json())
             .then(response => {
             this.list = JSON.parse(JSON.stringify(response)).entities;
+            this.updateAttributeList();
         });
     }
     componentDidLoad() {
         this._socketService.onSocketReady(() => {
             this._socketService.onSocket(this.type + "-" + this.entityid + "-" + this.filter, (msg) => {
                 this.list = JSON.parse(JSON.stringify(msg)).entities;
+                this.updateAttributeList();
             });
         });
+    }
+    updateAttributeList() {
+        if (this.type != "" && this.type != 'undefined') {
+            if (this.list.length > 0) {
+                this.attributeList = [];
+                for (var i = 0; i < this.list[0].values.length; i++) {
+                    this.attributeList.push(this.list[0].values[i].name);
+                }
+            }
+        }
+        else {
+            fetch('http://' + this.service_url + ':3000/attributeList?entity=' + this.entityid)
+                .then((response) => response.json())
+                .then(response => {
+                this.attributeList = response;
+            });
+        }
+    }
+    writeRows(entityAttributes, attribute) {
+        for (var i = 0; i < entityAttributes.length; i++) {
+            if (entityAttributes[i].name == attribute) {
+                return h("td", null, entityAttributes[i].value);
+            }
+        }
+        return h("td", null, "None");
     }
     render() {
         return (h("div", { class: "container body" },
@@ -37,14 +65,14 @@ export class AppTable {
                                     h("input", { type: "checkbox", id: "selectAll" }),
                                     h("label", { htmlFor: "selectAll" }))),
                             h("th", null, "Name"),
-                            this.list.length > 0 ? this.list[0].values.map((entityValue) => h("th", null, entityValue.name)) : h("th", null, "No items found"))),
+                            this.attributeList.length > 0 ? this.attributeList.map((attribute) => h("th", null, attribute)) : h("th", null, "No items found"))),
                     h("tbody", null, this.list.map((entity) => h("tr", null,
                         h("td", null,
                             h("span", { class: "custom-checkbox" },
                                 h("input", { type: "checkbox", id: "checkbox2", name: "options[]", value: "1" }),
                                 h("label", { htmlFor: "checkbox2" }))),
                         h("td", null, entity.name),
-                        entity.values.map((entityValue) => h("td", null, entityValue.value)),
+                        this.attributeList.map((attribute) => this.writeRows(entity.values, attribute)),
                         this.entityid == "" ? h("td", { class: "button-td" },
                             h("a", { href: this.page_url + "?type=" + this.type + "&id=" + entity.name, class: " next round" }, "\u203A")) : h("td", { class: "no-display" }))))),
                 h("div", { class: "clearfix" },
@@ -65,6 +93,9 @@ export class AppTable {
     static get is() { return "app-table"; }
     static get encapsulation() { return "shadow"; }
     static get properties() { return {
+        "attributeList": {
+            "state": true
+        },
         "entityid": {
             "type": String,
             "attr": "entityid"

@@ -3,7 +3,23 @@
     {
       "label": "app-combobox",
       "description": "",
-      "attributes": []
+      "attributes": [
+        {
+          "label": "comboid",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "component-width",
+          "description": "",
+          "required": false
+        },
+        {
+          "label": "selected-data",
+          "description": "",
+          "required": false
+        }
+      ]
     },
     {
       "label": "app-comparechart",

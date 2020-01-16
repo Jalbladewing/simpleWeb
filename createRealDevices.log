@@ -1,4 +1,4 @@
-curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+curl 192.168.111.129:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
 {
   "id": "Grinon",
   "type": "Weather_Station",
@@ -21,7 +21,7 @@ curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' 
 }
 EOF
 
-curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+curl 192.168.111.129:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
 {
   "id": "Sensores_Externos_CSNAT",
   "type": "Weather_Station",
@@ -44,7 +44,7 @@ curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' 
 }
 EOF
 
-curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+curl 192.168.111.129:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
 {
   "id": "Meteo_Station._Desierto_de_Almeria",
   "type": "Weather_Station",
@@ -67,7 +67,7 @@ curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' 
 }
 EOF
 
-curl 192.168.183.128:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
+curl 192.168.111.129:1026/v2/entities -s -S -H 'Content-Type: application/json' -d @- <<EOF
 {
   "id": "Britos_Weather_Station",
   "type": "Weather_Station",

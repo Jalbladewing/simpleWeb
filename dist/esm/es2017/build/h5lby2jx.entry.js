@@ -1,4 +1,6 @@
-export class AppComboBox {
+import { h } from '../app.core.js';
+
+class AppComboBox {
     constructor() {
         this.dropDownClick = this.dropDownClick.bind(this);
         this.filterFunction = this.filterFunction.bind(this);
@@ -66,5 +68,7 @@ export class AppComboBox {
             "cancelable": true,
             "composed": true
         }]; }
-    static get style() { return "/**style-placeholder:app-comboBox:**/"; }
+    static get style() { return ".dropbtn{width:300px!important;background-color:#4caf50;color:#fff;padding:16px;font-size:16px;border:none;cursor:pointer}.dropbtn:focus,.dropbtn:hover{background-color:#3e8e41}#myInput{-webkit-box-sizing:border-box;background-image:url(searchicon.png);background-position:14px 12px;background-repeat:no-repeat;font-size:16px;padding:10px 20px 10px 15px;width:300px!important;box-sizing:border-box;border:1px solid #d0d0d0;border-radius:4px}#myInput:focus{border-color:#03aefd!important}.dropdown{position:relative;display:inline-block;width:300px!important}.dropdown-content{display:none;position:absolute;background-color:#fff;overflow:auto;border:1px solid #ddd;z-index:1;width:100%;border-radius:4px}.dropdown-content a{color:#000;padding:12px 16px;text-decoration:none;display:block;cursor:pointer;font-weight:400;text-align:left}.dropdown a:hover{background-color:#ddd}.show{display:block}.no-display{display:none}.input-icon{position:absolute;right:10px;color:#000;top:10px;pointer-events:none}"; }
 }
+
+export { AppComboBox as AppCombobox };

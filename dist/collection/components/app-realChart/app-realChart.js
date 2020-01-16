@@ -66,7 +66,11 @@ export class AppRealChart {
         this.dateList = [];
     }
     entitySelected(event) {
-        this.auxAttributeSelected = event.detail;
+        switch (event.detail.split(":")[0]) {
+            case "attributeCombo":
+                this.auxAttributeSelected = event.detail.split(":")[1];
+                return;
+        }
     }
     getAttributeName() {
         return this.attributeSelected.charAt(0).toUpperCase() + this.attributeSelected.substring(1, this.attributeSelected.length);
@@ -79,7 +83,7 @@ export class AppRealChart {
                         h("span", { class: "close", onClick: this.closeModal }, "\u00D7"),
                         h("h2", null, "Linear Chart Attribute Selection")),
                     h("div", { class: "modal-body" },
-                        h("app-comboBox", { combodata: this.attributeList }),
+                        h("app-comboBox", { combodata: this.attributeList, comboid: "attributeCombo" }),
                         h("input", { class: 'button -blue center', type: "submit", value: "Submit", onClick: this.submitNewAttribute })))),
             h("h1", null, this.getAttributeName()),
             h("button", { class: 'button -blue center editBtn', onClick: this.modalButtonClick }, "Edit"),
