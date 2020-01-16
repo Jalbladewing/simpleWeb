@@ -93,7 +93,7 @@ class AppTable {
         });
     }
     updateAttributeList() {
-        if (this.type != "" && this.type != 'undefined') {
+        if (this.entityid != "" && this.entityid != 'undefined' || this.type != "" && this.type) {
             if (this.list.length > 0) {
                 this.attributeList = [];
                 for (var i = 0; i < this.list[0].values.length; i++) {
@@ -102,7 +102,7 @@ class AppTable {
             }
         }
         else {
-            fetch('http://' + this.service_url + ':3000/attributeList?entity=' + this.entityid)
+            fetch('http://' + this.service_url + ':3000/attributeList?type=' + this.entityid)
                 .then((response) => response.json())
                 .then(response => {
                 this.attributeList = response;

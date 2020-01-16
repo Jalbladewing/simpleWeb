@@ -101,14 +101,17 @@ class AppCompareChart {
         });
     }
     updateGraphValues() {
-        this.maxData = 0;
+        this.maxData = 0.0;
         this.list.map((entity) => {
             entity.values.map((entityValue) => {
                 if (entityValue.name == this.attributeSelected) {
                     if (entity.name == this.entity_to_compare)
                         this.roomData = entityValue.value;
-                    if (this.maxData < entityValue.value)
+                    if (parseFloat(this.maxData) < parseFloat(entityValue.value)) {
+                        console.log("PRev Max: " + this.maxData);
+                        console.log("PRev Value: " + entityValue.value);
                         this.maxData = entityValue.value;
+                    }
                 }
             });
         });
@@ -116,14 +119,21 @@ class AppCompareChart {
     updateAttributeList() {
         if (this.list.length > 0) {
             this.attributeList = [];
-            for (var i = 0; i < this.list[0].values.length; i++) {
-                if (i == 0)
-                    this.attributeSelected = this.list[0].values[i].name;
-                this.attributeList.push(this.list[0].values[i].name);
+            for (var i = 0; i < this.list.length; i++) {
+                if (this.list[i].name == this.entity_to_compare) {
+                    for (var j = 0; j < this.list[i].values.length; j++) {
+                        if (j == 0)
+                            this.attributeSelected = this.list[i].values[j].name;
+                        this.attributeList.push(this.list[i].values[j].name);
+                    }
+                    break;
+                }
             }
         }
     }
     valueToPercent(value) {
+        console.log("Value: " + value);
+        console.log("Max: " + this.maxData);
         return (value * 100) / this.maxData;
     }
     modalButtonClick() {
@@ -273,7 +283,7 @@ class AppCompareChart {
             "name": "entitySelected",
             "method": "entitySelected"
         }]; }
-    static get style() { return ".wrapContent{position:relative;width:600px}.editBtn{position:absolute;top:0;right:0;z-index:1;width:auto!important}.button{margin-top:20px;width:100px;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button,.button:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button:hover{opacity:.85}.button:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue{color:#fff;background:#416dea}.modal{display:none;position:fixed;z-index:6;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.modal-content{position:relative;background-color:#fefefe;margin:auto;padding:0;border:1px solid #888;width:20%;-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:animatetop;-webkit-animation-duration:.4s;animation-name:animatetop;animation-duration:.4s}\@-webkit-keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}\@keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}.close{color:#fff;float:right;font-size:28px;font-weight:700}.close:focus,.close:hover{color:#8e8e8e;text-decoration:none;cursor:pointer}.modal-header{padding:2px 16px;background-color:#000;color:#fff}.modal-body{padding:15px;text-align:center}"; }
+    static get style() { return ".wrapContent.sc-app-compareChart{position:relative;width:600px}.editBtn.sc-app-compareChart{position:absolute;top:0;right:0;z-index:1;width:auto!important}.button.sc-app-compareChart{margin-top:20px;width:100px;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button.sc-app-compareChart, .button.sc-app-compareChart:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button.sc-app-compareChart:hover{opacity:.85}.button.sc-app-compareChart:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button.sc-app-compareChart:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue.sc-app-compareChart{color:#fff;background:#416dea}.modal.sc-app-compareChart{display:none;position:fixed;z-index:6;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.modal-content.sc-app-compareChart{position:relative;background-color:#fefefe;margin:auto;padding:0;border:1px solid #888;width:20%;-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:animatetop;-webkit-animation-duration:.4s;animation-name:animatetop;animation-duration:.4s}\@-webkit-keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}\@keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}.close.sc-app-compareChart{color:#fff;float:right;font-size:28px;font-weight:700}.close.sc-app-compareChart:focus, .close.sc-app-compareChart:hover{color:#8e8e8e;text-decoration:none;cursor:pointer}.modal-header.sc-app-compareChart{padding:2px 16px;background-color:#000;color:#fff}.modal-body.sc-app-compareChart{padding:15px;text-align:center}"; }
 }
 
 export { AppCompareChart as AppComparechart };

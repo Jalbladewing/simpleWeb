@@ -43,7 +43,6 @@ export class AppWriteComponent {
                 var selected = this.selectedType;
                 if (this.selectedType == "All")
                     selected = "";
-                console.log(selected);
                 var renderType = this.page_url.split('type="');
                 var afterType = renderType[1].substring(renderType[1].indexOf('"') + 1, renderType[1].length);
                 this.htmlRender = renderType[0] + 'type="' + selected + '"' + afterType;
@@ -55,7 +54,7 @@ export class AppWriteComponent {
         var selected = this.selectedType;
         if (this.selectedType == "All")
             selected = "";
-        fetch('http://' + this.service_url + ':3000/attributeList?entity=' + selected)
+        fetch('http://' + this.service_url + ':3000/attributeList?type=' + selected)
             .then((response) => response.json())
             .then(response => {
             this.attributeList = response;
