@@ -1,13 +1,13 @@
 import { SocketIoService } from './app-io';
 export class AppTable {
     constructor() {
-        this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
         this.list = [];
         this.attributeList = [];
         this.filter = "";
     }
     componentWillLoad() {
+        this._socketService = SocketIoService.getInstance(this.service_url);
         fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid + '&queryFilter=' + this.filter)
             .then((response) => response.json())
             .then(response => {

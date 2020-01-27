@@ -2,6 +2,10 @@ import '../../stencil.core';
 import { SocketIoService } from './app-io';
 import 'stencil-apexcharts';
 export declare class AppCompareChart {
+    /**
+     * socket io instance
+     */
+    _socketService: SocketIoService;
     list: any[];
     attributeList: string[];
     attributeSelected: string;
@@ -13,10 +17,6 @@ export declare class AppCompareChart {
     filter: string;
     service_url: string;
     entity_to_compare: string;
-    /**
-     * socket io instance
-     */
-    _socketService: SocketIoService;
     private modalDialog?;
     constructor();
     componentWillLoad(): void;

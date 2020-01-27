@@ -7,7 +7,7 @@ export class SocketIoService {
         this.path = path;
         this.attachLibrary(url);
     }
-    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+    static getInstance(url = "localhost", path = "dist/collection/assets/lib/socket.io.js") {
         SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
         return SocketIoService.instance;
     }

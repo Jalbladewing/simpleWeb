@@ -4,7 +4,7 @@ export interface Socket {
 }
 export declare class SocketIoService {
     private static instance;
-    static getInstance(path?: string, url?: string): SocketIoService;
+    static getInstance(url?: string, path?: string): SocketIoService;
     _socket: any;
     _io: any;
     path: string;

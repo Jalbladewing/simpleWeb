@@ -9,7 +9,7 @@ class SocketIoService {
         this.path = path;
         this.attachLibrary(url);
     }
-    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+    static getInstance(url = "localhost", path = "dist/collection/assets/lib/socket.io.js") {
         SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
         return SocketIoService.instance;
     }
@@ -70,13 +70,13 @@ class SocketIoService {
 
 class AppTable {
     constructor() {
-        this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
         this.list = [];
         this.attributeList = [];
         this.filter = "";
     }
     componentWillLoad() {
+        this._socketService = SocketIoService.getInstance(this.service_url);
         fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid + '&queryFilter=' + this.filter)
             .then((response) => response.json())
             .then(response => {

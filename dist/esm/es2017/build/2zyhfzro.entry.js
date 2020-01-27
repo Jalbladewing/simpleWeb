@@ -9,7 +9,7 @@ class SocketIoService {
         this.path = path;
         this.attachLibrary(url);
     }
-    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+    static getInstance(url = "localhost", path = "dist/collection/assets/lib/socket.io.js") {
         SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
         return SocketIoService.instance;
     }
@@ -70,7 +70,6 @@ class SocketIoService {
 
 class AppCompareChart {
     constructor() {
-        this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
         this.list = [];
         this.attributeList = [];
@@ -84,6 +83,7 @@ class AppCompareChart {
         this.submitNewAttribute = this.submitNewAttribute.bind(this);
     }
     componentWillLoad() {
+        this._socketService = SocketIoService.getInstance(this.service_url);
         fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid + '&queryFilter=' + this.filter)
             .then((response) => response.json())
             .then(response => {
@@ -108,8 +108,6 @@ class AppCompareChart {
                     if (entity.name == this.entity_to_compare)
                         this.roomData = entityValue.value;
                     if (parseFloat(this.maxData) < parseFloat(entityValue.value)) {
-                        console.log("PRev Max: " + this.maxData);
-                        console.log("PRev Value: " + entityValue.value);
                         this.maxData = entityValue.value;
                     }
                 }
@@ -132,8 +130,6 @@ class AppCompareChart {
         }
     }
     valueToPercent(value) {
-        console.log("Value: " + value);
-        console.log("Max: " + this.maxData);
         return (value * 100) / this.maxData;
     }
     modalButtonClick() {

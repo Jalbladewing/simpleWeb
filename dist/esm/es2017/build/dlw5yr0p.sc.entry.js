@@ -9,7 +9,7 @@ class SocketIoService {
         this.path = path;
         this.attachLibrary(url);
     }
-    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+    static getInstance(url = "localhost", path = "dist/collection/assets/lib/socket.io.js") {
         SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
         return SocketIoService.instance;
     }
@@ -77,7 +77,6 @@ function _typeof(t){return (_typeof="function"==typeof Symbol&&"symbol"==typeof 
 
 class AppRealChart {
     constructor() {
-        this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
         this.list = [];
         this.attributeList = [];
@@ -91,6 +90,7 @@ class AppRealChart {
         this.submitNewAttribute = this.submitNewAttribute.bind(this);
     }
     componentWillLoad() {
+        this._socketService = SocketIoService.getInstance(this.service_url);
         fetch('http://' + this.service_url + ':3000/subscription?entity=' + this.type + '&id=' + this.entityid + '&queryFilter=' + this.filter)
             .then((response) => response.json())
             .then(response => {
@@ -242,7 +242,7 @@ class AppRealChart {
             "name": "entitySelected",
             "method": "entitySelected"
         }]; }
-    static get style() { return ".wrapContent{position:relative;width:auto}.editBtn{position:absolute;top:0;right:0;z-index:1;width:auto!important}.button{margin-top:20px;width:100px;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button,.button:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button:hover{opacity:.85}.button:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue{color:#fff;background:#416dea}.modal{display:none;position:fixed;z-index:6;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.modal-content{position:relative;background-color:#fefefe;margin:auto;padding:0;border:1px solid #888;width:20%;-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:animatetop;-webkit-animation-duration:.4s;animation-name:animatetop;animation-duration:.4s}\@-webkit-keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}\@keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}.close{color:#fff;float:right;font-size:28px;font-weight:700}.close:focus,.close:hover{color:#8e8e8e;text-decoration:none;cursor:pointer}.modal-header{padding:2px 16px;background-color:#000;color:#fff}.modal-body{padding:15px;text-align:center}"; }
+    static get style() { return ".wrapContent.sc-app-realChart{position:relative;width:auto}.editBtn.sc-app-realChart{position:absolute;top:0;right:0;z-index:1;width:auto!important}.button.sc-app-realChart{margin-top:20px;width:100px;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button.sc-app-realChart, .button.sc-app-realChart:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button.sc-app-realChart:hover{opacity:.85}.button.sc-app-realChart:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button.sc-app-realChart:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue.sc-app-realChart{color:#fff;background:#416dea}.modal.sc-app-realChart{display:none;position:fixed;z-index:6;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.modal-content.sc-app-realChart{position:relative;background-color:#fefefe;margin:auto;padding:0;border:1px solid #888;width:20%;-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:animatetop;-webkit-animation-duration:.4s;animation-name:animatetop;animation-duration:.4s}\@-webkit-keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}\@keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}.close.sc-app-realChart{color:#fff;float:right;font-size:28px;font-weight:700}.close.sc-app-realChart:focus, .close.sc-app-realChart:hover{color:#8e8e8e;text-decoration:none;cursor:pointer}.modal-header.sc-app-realChart{padding:2px 16px;background-color:#000;color:#fff}.modal-body.sc-app-realChart{padding:15px;text-align:center}"; }
 }
 
 export { AppRealChart as AppRealchart };
