@@ -4,16 +4,16 @@ export interface Socket {
 }
 export declare class SocketIoService {
     private static instance;
-    static getInstance(path?: string): SocketIoService;
+    static getInstance(path?: string, url?: string): SocketIoService;
     _socket: any;
     _io: any;
     path: string;
     lib: boolean;
-    constructor(path: string);
+    constructor(path: string, url: string);
     /**
      * attach lib to the head of the page
      */
-    attachLibrary(): void;
+    attachLibrary(url: string): void;
     /**
      * wait for io object presence on window
      */

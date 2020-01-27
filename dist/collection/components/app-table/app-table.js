@@ -1,7 +1,7 @@
 import { SocketIoService } from './app-io';
 export class AppTable {
     constructor() {
-        this._socketService = SocketIoService.getInstance();
+        this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
         this.list = [];
         this.attributeList = [];

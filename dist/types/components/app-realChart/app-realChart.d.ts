@@ -3,10 +3,6 @@ import { SocketIoService } from './app-io';
 import 'apexcharts';
 import 'stencil-apexcharts';
 export declare class AppRealChart {
-    /**
-     * socket io instance
-     */
-    _socketService: SocketIoService;
     list: any[];
     attributeList: string[];
     attributeSelected: string;
@@ -17,6 +13,10 @@ export declare class AppRealChart {
     entityid: string;
     filter: string;
     service_url: string;
+    /**
+     * socket io instance
+     */
+    _socketService: SocketIoService;
     private modalDialog?;
     constructor();
     componentWillLoad(): void;

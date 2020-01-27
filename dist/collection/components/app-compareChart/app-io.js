@@ -1,24 +1,24 @@
 export class SocketIoService {
-    constructor(path) {
+    constructor(path, url) {
         this.lib = false;
         if (SocketIoService.instance) {
             throw new Error("Error - use SocketIoService.getInstance()");
         }
         this.path = path;
-        this.attachLibrary();
+        this.attachLibrary(url);
     }
-    static getInstance(path = "dist/collection/assets/lib/socket.io.js") {
-        SocketIoService.instance = SocketIoService.instance || new SocketIoService(path);
+    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+        SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
         return SocketIoService.instance;
     }
-    attachLibrary() {
+    attachLibrary(url) {
         if (!this.lib) {
             const scriptTag = document.createElement('script');
             scriptTag.src = this.path;
             document.querySelector('head').appendChild(scriptTag);
             this.ensureIoPresent().then(function () {
                 this._io = window['io'];
-                this._socket = this._io('http://localhost:3000');
+                this._socket = this._io('http://' + url + ':3000');
                 this.lib = true;
             }.bind(this));
         }

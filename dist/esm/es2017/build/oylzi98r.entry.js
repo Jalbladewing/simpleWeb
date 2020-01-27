@@ -1,5 +1,74 @@
-import { SocketIoService } from './app-io';
-export class AppCompareChart {
+import { h } from '../app.core.js';
+
+class SocketIoService {
+    constructor(path, url) {
+        this.lib = false;
+        if (SocketIoService.instance) {
+            throw new Error("Error - use SocketIoService.getInstance()");
+        }
+        this.path = path;
+        this.attachLibrary(url);
+    }
+    static getInstance(path = "dist/collection/assets/lib/socket.io.js", url = "localhost") {
+        SocketIoService.instance = SocketIoService.instance || new SocketIoService(path, url);
+        return SocketIoService.instance;
+    }
+    attachLibrary(url) {
+        if (!this.lib) {
+            const scriptTag = document.createElement('script');
+            scriptTag.src = this.path;
+            document.querySelector('head').appendChild(scriptTag);
+            this.ensureIoPresent().then(function () {
+                this._io = window['io'];
+                this._socket = this._io('http://' + url + ':3000');
+                this.lib = true;
+            }.bind(this));
+        }
+    }
+    ensureIoPresent() {
+        const waitForIo = (resolve) => {
+            if (window['io'] !== undefined) {
+                return resolve();
+            }
+            setTimeout(waitForIo, 30, resolve);
+        };
+        return new Promise(function (resolve) {
+            waitForIo(resolve);
+        }.bind(this));
+    }
+    ensureSocketPresent() {
+        const waitForSocket = (resolve) => {
+            if (this._socket !== undefined) {
+                return resolve();
+            }
+            setTimeout(waitForSocket, 30, resolve);
+        };
+        return new Promise(function (resolve) {
+            waitForSocket(resolve);
+        }.bind(this));
+    }
+    onSocketReady(callback) {
+        return this.ensureIoPresent().then(function () {
+            callback();
+        }.bind(this));
+    }
+    onSocket(identifier, callback) {
+        this.ensureSocketPresent().then(function () {
+            this._socket.on(identifier, callback);
+        }.bind(this));
+    }
+    emitSocket(identifier, payload) {
+        console.log(identifier, payload);
+        this.ensureSocketPresent().then(function () {
+            this._socket.emit(identifier, payload);
+        }.bind(this));
+    }
+    socket() {
+        return this._socket;
+    }
+}
+
+class AppCompareChart {
     constructor() {
         this._socketService = SocketIoService.getInstance(this.service_url);
         this._socketService;
@@ -214,5 +283,7 @@ export class AppCompareChart {
             "name": "entitySelected",
             "method": "entitySelected"
         }]; }
-    static get style() { return "/**style-placeholder:app-compareChart:**/"; }
+    static get style() { return ".wrapContent{position:relative;width:600px}.editBtn{position:absolute;top:0;right:0;z-index:1;width:auto!important}.button{margin-top:20px;width:100px;overflow:hidden;padding:12px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;text-align:center;white-space:nowrap;text-decoration:none!important;text-transform:none;text-transform:capitalize;color:#fff;border:0;border-radius:4px;font-size:13px;font-weight:500;line-height:1.3;-webkit-appearance:none;-moz-appearance:none;appearance:none;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;-ms-flex:0 0 160px;flex:0 0 160px;-webkit-box-shadow:2px 5px 10px var(--color-smoke);box-shadow:2px 5px 10px var(--color-smoke)}.button,.button:hover{-webkit-transition:all .15s linear;transition:all .15s linear}.button:hover{opacity:.85}.button:active{-webkit-transition:all .15s linear;transition:all .15s linear;opacity:.75}.button:focus{outline:1px dotted #959595;outline-offset:-4px}.button.-blue{color:#fff;background:#416dea}.modal{display:none;position:fixed;z-index:6;padding-top:100px;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,.4)}.modal-content{position:relative;background-color:#fefefe;margin:auto;padding:0;border:1px solid #888;width:20%;-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);-webkit-animation-name:animatetop;-webkit-animation-duration:.4s;animation-name:animatetop;animation-duration:.4s}\@-webkit-keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}\@keyframes animatetop{0%{top:-300px;opacity:0}to{top:0;opacity:1}}.close{color:#fff;float:right;font-size:28px;font-weight:700}.close:focus,.close:hover{color:#8e8e8e;text-decoration:none;cursor:pointer}.modal-header{padding:2px 16px;background-color:#000;color:#fff}.modal-body{padding:15px;text-align:center}"; }
 }
+
+export { AppCompareChart as AppComparechart };
